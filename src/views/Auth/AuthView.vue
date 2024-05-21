@@ -21,20 +21,16 @@
             if (!response.ok) {
                 throw new Error('Invalid email or password');
             }
-            const data = await response.json();
-            console.log(data);
-            router.push('/home');
+            return response.json();
 
-         })
-        // //  .then(data => {
-        // //     console.log(data);
-        // //     localStorage.setItem('token', data.token);
-        // //     router.push('/home');
-        // // })
+         }).then(data => {
+            console.log(data);
+            localStorage.setItem('token', data.token);
+            router.push('/home'); // change to tasks view
+        })
         .catch(error => {
             console.error(error);
         });
-        // router.push('/home');
     }
 
 </script>
