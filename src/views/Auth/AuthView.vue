@@ -25,7 +25,7 @@
             console.log(data);
             localStorage.setItem('token', data.token);
 
-            router.push('/home')
+            router.push('/tasks')
         })
         .catch(error => {
             console.error(error);
