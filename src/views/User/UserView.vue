@@ -51,12 +51,12 @@
     <div id="success-alert" class="flex items-center justify-center w-screen mt-10 absolute">
     </div>
         <div class="flex items-center justify-center h-screen w-screen">
-        <div class="flex items-center justify-center bg-[#FCFFE0] w-1/2	 rounded-lg">
+        <div class="flex items-center justify-center rounded-lg w-1/2 bg-[#ACE1AF] bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] z-10">
             <div class="auth  p-10 bg-[#7ABA78] rounded-l-lg w-1/2">
                 <form class="max-w-sm mx-auto" @submit.prevent="clickedSubmit()">
                     <div class="mb-5">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
-                        <input type="text" id="name" v-model="form.name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#4F6F52] dark:border-[#4F6F52] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light w-60" required />
+                        <input type="text" id="name" v-model="form.name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-[#4F6F52] dark:border-[#4F6F52] dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light w-80" required />
                     </div>
                     <div class="mb-5">
                         <label for="surname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido</label>
