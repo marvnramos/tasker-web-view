@@ -1,5 +1,4 @@
 <script setup lang="ts">
-    import router from '@/router';
     import { createApp, reactive } from 'vue';
     import success from '@/components/success.vue';
 
