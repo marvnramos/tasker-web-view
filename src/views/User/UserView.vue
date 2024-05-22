@@ -49,7 +49,7 @@
 
 
 <template>
-    <div id="success-alert" class="flex items-center justify-center w-screen mt-10">
+    <div id="success-alert" class="flex items-center justify-center w-screen mt-10 absolute">
     </div>
         <div class="flex items-center justify-center h-screen w-screen">
         <div class="flex items-center justify-center bg-[#FCFFE0] w-1/2	 rounded-lg">
