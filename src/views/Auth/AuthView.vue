@@ -68,7 +68,7 @@
       <p class="mt-10 text-center text-sm text-gray-400">
         ¿No tienes una cuenta?
         {{ ' ' }}
-        <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Regístrate</a>
+        <a href="/register" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Regístrate</a>
       </p>
     </div>
   </div>
