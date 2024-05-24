@@ -33,27 +33,31 @@ import DelTask from '@/components/DeleteTaskModal.vue';
         emits('closeModal');
     };
 
-    onMounted(async () => {
-    try {
-        const response = await fetch('http://localhost:8080/tasks/user/664e21381bff24656d65fdaf', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            // 'Authorization': 'Bearer ' + localStorage.getItem('token')
-        }
-        });
+    async function loadTableData(){
+        try {
+            const response = await fetch('http://localhost:8080/tasks/user/664e21381bff24656d65fdaf', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                // 'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+            });
 
-        if (!response.ok) {
-        throw new Error('Error al obtener las tareas');
-        }
+            if (!response.ok) {
+            throw new Error('Error al obtener las tareas');
+            }
 
-        const data = await response.json();
-        // console.log(data.tasks);
-        tasks.value = data.tasks;
-    } catch (error) {
-        console.error(error);
+            const data = await response.json();
+            // console.log(data.tasks);
+            tasks.value = data.tasks;
+        } catch (error) {
+            console.error(error);
+        }
     }
+
+    onMounted(() => {
+        loadTableData();
     });
 
     const setStatusTagColor = (status: string) => {
