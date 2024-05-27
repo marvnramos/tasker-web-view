@@ -15,6 +15,11 @@ const closeModal = () => {
   showModal.value = false;
   emits('closeModal');
 };
+
+const logOut = () => {
+    localStorage.removeItem('token');
+    router.push('/');
+};
 </script>
 <template>
     <nav class="fixed w-full z-20 top-0 start-0">
@@ -24,7 +29,7 @@ const closeModal = () => {
                 <button type="button" class="m-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                     @click.prevent="openModal">Agregar Tarea</button>
                 <button type="button" class="m-5 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    @click.prevent="router.push('/')">Cerrar sesión</button>
+                    @click.prevent="logOut">Cerrar sesión</button>
             </div>
         </div>
     </nav>
