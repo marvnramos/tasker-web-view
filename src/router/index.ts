@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import AuthView from '@/views/Auth/AuthView.vue'
 import RegisterView from '@/views/User/UserView.vue'
 import TasksView from '@/views/Task/TasksView.vue'
-import NotFoundView from '@/views/AboutView.vue'
+import NotAuth from '@/views/AboutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +25,7 @@ const router = createRouter({
     {
       path: '/not-found',
       name: 'NotFound',
-      component: () => NotFoundView
+      component: () => NotAuth
     }
   ]
 })
