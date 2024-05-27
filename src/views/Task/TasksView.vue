@@ -2,7 +2,7 @@
     import NavMenu from '@/components/NavMenu.vue';
     import Table from '@/components/Table.vue';
     import router from '@/router';
-    
+
     // const validateAuth = () => {
     //     const token = localStorage.getItem('token');
     //     if (!token) {
