@@ -4,6 +4,9 @@ import {ref, onMounted, defineEmits} from 'vue';
 import type { Task } from '@/utils/task-interface';
 import EditTask from '@/components/EditTaskModal.vue';
 import DelTask from '@/components/DeleteTaskModal.vue';
+import {useStore} from '@/utils/store';
+
+    const store = useStore();
 
     let tasks = ref<Task[]>([]);
     const selectedTaskId = ref<string | null>(null);
@@ -34,13 +37,13 @@ import DelTask from '@/components/DeleteTaskModal.vue';
     };
 
     async function loadTableData(){
-        try {
-            const response = await fetch('http://localhost:8080/tasks/user/664e21381bff24656d65fdaf', {
+        try { //'http://localhost:8080/tasks/user/664e21381bff24656d65fdaf'
+            const response = await fetch('http://localhost:3002/api/v1/tasks/user', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                // 'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
             });
 
@@ -49,7 +52,7 @@ import DelTask from '@/components/DeleteTaskModal.vue';
             }
 
             const data = await response.json();
-            // console.log(data.tasks);
+            console.log(data.tasks);
             tasks.value = data.tasks;
         } catch (error) {
             console.error(error);
@@ -57,6 +60,7 @@ import DelTask from '@/components/DeleteTaskModal.vue';
     }
 
     onMounted(() => {
+        store.fun = loadTableData;
         loadTableData();
     });
 
