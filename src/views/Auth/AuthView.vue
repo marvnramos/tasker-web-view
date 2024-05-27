@@ -8,7 +8,7 @@
     });
 
     async function handleClick() {
-        await fetch('http://localhost:3000/users/login', {
+        await fetch('http://localhost:3002/api/v1/users/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
