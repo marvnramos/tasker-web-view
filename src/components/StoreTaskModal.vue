@@ -2,12 +2,16 @@
 import router from '@/router';
 import { defineEmits } from 'vue';
 import { ref } from 'vue';
+import {useStore} from '@/utils/store';
 
 const emits = defineEmits(['closeModal']);
 
 const openModal = () => {
     emits('closeModal');
 };
+
+const store = useStore();
+const reloadTableData = store.fun;
 
 const form = ref({
     title: '',
@@ -16,22 +20,21 @@ const form = ref({
     status: ''
 });
 
-
-
 function createTask() {
     const request_payload = {
     title: form.value.title,
     description: form.value.description,
     priority: form.value.priority,
     status: form.value.status,
-    userId: "664e21381bff24656d65fdaf"
-    // userId: localStorage.getItem('token') // desencriptar token
     };
 
-    fetch('http://localhost:8080/tasks/create', {
+    // http://localhost:8080/tasks/create
+
+    fetch('http://localhost:3002/api/v1/tasks/create', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token') // add auth bearer token
         },
         // add auth bearer token
         body: JSON.stringify(request_payload)
@@ -44,8 +47,8 @@ function createTask() {
         }
     ).then(data => {
         console.log(data);
+        reloadTableData();
         openModal();
-        router.push('/tasks');
     }).catch(error => {
         console.error(error);
     });
