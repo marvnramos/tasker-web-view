@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import router from '@/router';
 import { ref,defineEmits, onMounted, defineProps} from 'vue';
+import {useStore} from '@/utils/store';
+
+const store = useStore();
+const reloadTableData = store.fun;
 
 const emits = defineEmits(['closeModal']);
 const props = defineProps<{ taskId: string | null }>();
@@ -8,6 +11,7 @@ const props = defineProps<{ taskId: string | null }>();
 const openModal = () => {
     emits('closeModal');
 };
+const taskId = props.taskId;
 
 const form = ref({
     title: '',
@@ -19,12 +23,12 @@ const form = ref({
 onMounted(
     async () => {
         try {
-            fetch(`http://localhost:8080/tasks/${props.taskId}`, {
+            fetch(`http://localhost:3002/api/v1/tasks/${taskId}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    // 'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 }
             }).then(
                 response => {
@@ -51,28 +55,26 @@ function handleClic(){
         description: form.value.description,
         priority: form.value.priority,
         status: form.value.status,
-        // userId: "664e21381bff24656d65fdaf"
-        // userId: localStorage.getItem('token') // desencriptar token
     };
-
-    fetch(`http://localhost:8080/tasks/update/${props.taskId}`, {
+    fetch(`http://localhost:3002/api/v1/tasks/edit/${taskId}`, {
         method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
         },
-        // add auth bearer token
         body: JSON.stringify(request_payload)
     }).then(
         response => {
             if (!response.ok) {
-                throw new Error('Error al crear la tarea');
+                throw new Error('Error al actualizar la tarea');
             }
             return response.json();
         }
     ).then(data => {
         console.log(data);
+        reloadTableData();
         openModal();
-        router.push('/tasks');
     }).catch(error => {
         console.error(error);
     });
