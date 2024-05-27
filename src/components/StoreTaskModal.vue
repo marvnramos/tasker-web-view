@@ -16,8 +16,8 @@ const reloadTableData = store.fun;
 const form = ref({
     title: '',
     description: '',
-    priority: '',
-    status: ''
+    priority: 'Baja',
+    status: 'Por hacer'
 });
 
 function createTask() {
@@ -27,6 +27,11 @@ function createTask() {
     priority: form.value.priority,
     status: form.value.status,
     };
+
+    if(!request_payload.title || !request_payload.description) {
+        alert('Por favor, rellena todos los campos');
+        return;
+    }
 
     // http://localhost:8080/tasks/create
 
@@ -89,7 +94,7 @@ function createTask() {
                     <div class="col-span-2 sm:col-span-1">
                         <label for="priority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prioridad</label>
                         <select id="priority" v-model="form.priority" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option value="Baja">Baja</option>
+                            <option value="Baja" selected>Baja</option>
                             <option value="Media">Media</option>
                             <option value="Alta">Alta</option>
                         </select>
@@ -97,7 +102,7 @@ function createTask() {
                     <div class="col-span-2 sm:col-span-1">
                         <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
                         <select id="status" v-model="form.status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <option value="Por hacer">Por hacer</option>
+                            <option value="Por hacer" selected>Por hacer</option>
                             <option value="En progreso">En progreso</option>
                             <option value="Hecho">Hecho</option>
                         </select>
